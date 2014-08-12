@@ -1,0 +1,2 @@
+parameters:
+    tables.referrers: %core.table_prefix%referrers

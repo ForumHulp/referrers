@@ -1,0 +1,96 @@
+<!-- IF S_ALLOW_CDN -->
+<!-- INCLUDECSS //maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css -->
+<!-- ELSE -->
+<!-- INCLUDECSS css/font-awesome.min.css -->
+<!-- ENDIF -->
+<!-- INCLUDECSS css/referrers.css -->
+<!-- INCLUDECSS css/jquery.simpledialog.css -->
+
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_REF_MANAGE} <a href="{U_ACTION}&amp;action=details" class="simpledialog"><i class="fa fa-info-circle"></i></a></h1>
+
+<p>{L_ACP_REF_MANAGE_EXPLAIN}</p>
+
+<form id="acp_referrers" method="post" action="{U_ACTION}">
+
+<!-- IF .pagination or TOTAL_POSTS -->
+    <div class="pagination">
+        <!-- IF .pagination -->
+            <!-- INCLUDE pagination.html -->
+        <!-- ELSE -->
+            &bull; {PAGE_NUMBER}
+        <!-- ENDIF -->
+    </div>
+<!-- ENDIF -->
+
+<fieldset class="tabulated">
+<legend>{L_ACP_REFERRERS}</legend>
+
+<table class="referrer">
+<thead>
+<tr>
+	<th class="row-1 row-host">{L_REF_HOST}<a href="{U_ACTION}&amp;sk=h&amp;sd=a" title="{L_DESCENDING}"><i class="fa fa-arrow-up"<!-- IF S_SORT_KEY == 'ref_host' and S_SORT_DIR == 'a' --> id="act-arrow"<!-- ENDIF -->></i></a> 
+            <a href="{U_ACTION}&amp;sk=h&amp;sd=d" title="{L_ASCENDING}"><i class="fa fa-arrow-down"<!-- IF S_SORT_KEY == 'h' and S_SORT_DIR == 'd' --> id="act-arrow"<!-- ENDIF -->></i></a></th>
+	<th class="row-2 row-link">{L_REF_URL}</th>
+	<th class="row-3 row-ip">{L_REF_IP}</th>
+	<th class="row-4 row-hits">{L_REF_HITS}<a href="{U_ACTION}&amp;sk=v&amp;sd=a" title="{L_DESCENDING}"><i class="fa fa-arrow-up"<!-- IF S_SORT_KEY == 'v' and S_SORT_DIR == 'a' --> id="act-arrow"<!-- ENDIF -->></i></a> 
+            <a href="{U_ACTION}&amp;sk=v&amp;sd=d" title="{L_ASCENDING}"><i class="fa fa-arrow-down"<!-- IF S_SORT_KEY == 'v' and S_SORT_DIR == 'd' --> id="act-arrow"<!-- ENDIF -->></i></a></th>
+	<th class="row-5 row-first">{L_REF_FIRST}<a href="{U_ACTION}&amp;sk=f&amp;sd=a" title="{L_DESCENDING}"><i class="fa fa-arrow-up"<!-- IF S_SORT_KEY == 'f' and S_SORT_DIR == 'a' --> id="act-arrow"<!-- ENDIF -->></i></a> 
+            <a href="{U_ACTION}&amp;sk=f&amp;sd=d" title="{L_ASCENDING}"><i class="fa fa-arrow-down"<!-- IF S_SORT_KEY == 'f' and S_SORT_DIR == 'd' --> id="act-arrow"<!-- ENDIF -->></i></a></th>
+	<th class="row-6 row-last">{L_REF_LAST}<a href="{U_ACTION}&amp;sk=l&amp;sd=a" title="{L_DESCENDING}"><i class="fa fa-arrow-up"<!-- IF S_SORT_KEY == 'l' and S_SORT_DIR == 'a' --> id="act-arrow"<!-- ENDIF -->></i></a> 
+            <a href="{U_ACTION}&amp;sk=l&amp;sd=d" title="{L_ASCENDING}"><i class="fa fa-arrow-down"<!-- IF S_SORT_KEY == 'l' and S_SORT_DIR == 'd' --> id="act-arrow"<!-- ENDIF -->></i></a></th>
+	<!-- IF S_REFDEL -->
+	<th class="row-7 row-mark">{L_MARK}</th>
+	<!-- ENDIF -->
+</tr>
+</thead>
+<tbody>
+<!-- BEGIN row -->
+	<!-- IF row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+	<td>{row.REF_HOST}</td>
+	<td><a href="{row.REF_URL}" onclick="window.open(this.href); return false;" title="{row.REF_URL}"><div style="width:100%; overflow:hidden; text-overflow:ellipsis;white-space:nowrap; font-size:100%;">{row.REF_URL}</div></a></td>
+	<td style="text-align:center;"><a href="{row.U_WHOIS}" onclick="popup(this.href, 700, 500, '_whois'); return false;">{row.REF_IP}</a></td>
+	<td style="text-align:center;">{row.REF_HITS}</td>
+	<td style="text-align:center;">{row.REF_FIRST}</td>
+	<td style="text-align:center;">{row.REF_LAST}</td>
+	<!-- IF S_REFDEL -->
+	<td style="text-align: center;">
+		<input type="checkbox" class="radio" name="mark[]" value="{row.REF_ID}" />
+	</td>
+	<!-- ENDIF -->
+</tr>
+<!-- BEGINELSE -->
+<tr class="row3">
+	<td colspan="7">{L_ACP_NO_ITEMS}</td>
+</tr>
+<!-- END row -->
+</tbody>
+</table>
+
+<!-- IF .pagination or TOTAL_POSTS -->
+    <div class="pagination">
+        <!-- IF .pagination -->
+            <!-- INCLUDE pagination.html -->
+        <!-- ELSE -->
+            &bull; {PAGE_NUMBER}
+        <!-- ENDIF -->
+    </div>
+<!-- ENDIF -->
+
+<!-- IF .row && S_REFDEL -->
+<fieldset class="quick">
+	<input class="button2" type="submit" name="delall" value="{L_DELETE_ALL}" />&nbsp;
+	<input class="button2" type="submit" name="delmarked" value="{L_DELETE_MARKED}" /><br />
+	<p class="small"><a href="#" onclick="marklist('acp_referrers', 'mark', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('acp_referrers', 'mark', false); return false;">{L_UNMARK_ALL}</a></p>
+</fieldset>
+<!-- ENDIF -->
+
+</fieldset>
+</form>
+<!-- INCLUDEJS js/jquery.simpledialog.js -->
+<!-- INCLUDEJS js/referrers.js -->
+
+<!-- INCLUDE overall_footer.html -->
