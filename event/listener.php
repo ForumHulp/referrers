@@ -84,6 +84,9 @@ class listener implements EventSubscriberInterface
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
+	/**
+	 * Inspired by Geolim4
+	 */
 	function get_ref($event)
 	{
 		$this->load_language_on_setup($event);
@@ -100,7 +103,7 @@ class listener implements EventSubscriberInterface
 		// get the host
 		$cur_host = $this->config['server_name'] . $this->config['script_path'];
 	
-		if ( !empty($ref_url) /*&& (strpos($ref_url, $cur_host) === false)*/ )
+		if ( !empty($ref_url) && (strpos($ref_url, $cur_host) === false) )
 		{
 			$ref_host = substr($ref_url, strpos($ref_url, '//') + 2);
 			if ( strpos($ref_host, '/') === false )
