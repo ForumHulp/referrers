@@ -148,10 +148,10 @@ class referrers_module
 					$sql = 'SELECT ref_host FROM ' . $this->referrerss_table . $sql_where;
 					$result = $db->sql_query($sql);
 
-					$host_list = '';
+					$host_list = array();
 					while ( $row = $db->sql_fetchrow($result) )
 					{
-						$host_list .= empty($host_list) ? $row['ref_host'] : ', ' . $row['ref_host'];
+						$host_list[] = $row['ref_host'];
 					}
 					$db->sql_freeresult($result);
 				}
@@ -161,7 +161,7 @@ class referrers_module
 					$sql = 'DELETE FROM ' . $this->referrerss_table . $sql_where;
 					$db->sql_query($sql);
 
-					add_log('admin', 'LOG_REFERRER_REMOVED', $host_list);
+					add_log('admin', 'LOG_REFERRER_REMOVED', implode(', ', array_unique($host_list)), (int) $this->db->sql_affectedrows());
 				}
 				else if ( $deleteall )
 				{
@@ -177,7 +177,6 @@ class referrers_module
 					'delmarked'	=> $deletemark,
 					'delall'	=> $deleteall,
 					'mark'		=> $mark,
-					'st'		=> $sort_days,
 					'sk'		=> $sort_key,
 					'sd'		=> $sort_dir,
 					'mode'		=> $mode,

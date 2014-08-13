@@ -30,9 +30,9 @@ $lang = array_merge($lang, array(
 	'REF_FIRST'	=> 'First visit',
 	'REF_LAST'	=> 'Latest visit',
 
-	'LOG_REFERRER_REMOVED'		=> '<strong>Removed referrer</strong><br />» %s records',
+	'LOG_REFERRER_REMOVED'		=> '<strong>Prune referrers</strong><br />» Hosts (%1$s),  %2$s records',
 	'LOG_REFERRER_REMOVED_ALL'	=> '<strong>Purged referrers</strong>',
 
-	'DELETE_REFERRERS_DAYS'			=> 'Referers',
-	'DELETE_REFERRERS_DAYS_EXPLAIN'	=> 'Days before cron wil delete referrers. 0 will disable this cron.'
+	'DELETE_REFERRERS_DAYS'			=> 'Referrers',
+	'DELETE_REFERRERS_DAYS_EXPLAIN'	=> 'Days after cron wil delete referrers. 0 will disable this cron.'
 ));

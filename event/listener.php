@@ -46,6 +46,7 @@ class listener implements EventSubscriberInterface
         return array(
 			'core.user_setup'					=> 'get_ref',
             'core.acp_board_config_edit_add'	=> 'load_config_on_setup',
+	//		'core.adm_setup'					=> 'load_language_on_setup',
 		);
     }
 	
