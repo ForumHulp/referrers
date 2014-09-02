@@ -108,7 +108,7 @@ class referrers_module
 		add_form_key($form_name);
 
 		// whois (special case)
-		if ( $action == 'whois' )
+		if ($action == 'whois')
 		{
 			include $phpbb_root_path . 'includes/functions_user.' . $phpEx;
 
@@ -127,16 +127,16 @@ class referrers_module
 			return;
 		}
 
-		if ( $deletemark || $deleteall )
+		if ($deletemark || $deleteall)
 		{
-			if ( confirm_box(true) )
+			if (confirm_box(true))
 			{
 				$sql_where = '';
 
-				if ( $deletemark && sizeof($mark) )
+				if ($deletemark && sizeof($mark))
 				{
 					$sql_in = array();
-					foreach ( $mark as $marked )
+					foreach ($mark as $marked)
 					{
 						$sql_in[] = $marked;
 					}
@@ -148,21 +148,21 @@ class referrers_module
 					$result = $db->sql_query($sql);
 
 					$host_list = array();
-					while ( $row = $db->sql_fetchrow($result) )
+					while ($row = $db->sql_fetchrow($result))
 					{
 						$host_list[] = $row['ref_host'];
 					}
 					$db->sql_freeresult($result);
 				}
 
-				if ( $sql_where )
+				if ($sql_where)
 				{
 					$sql = 'DELETE FROM ' . $this->referrerss_table . $sql_where;
 					$db->sql_query($sql);
 
 					add_log('admin', 'LOG_REFERRER_REMOVED', implode(', ', array_unique($host_list)), (int) $this->db->sql_affectedrows());
 				}
-				else if ( $deleteall )
+				else if ($deleteall)
 				{
 					// clear table
 					$db->sql_query('TRUNCATE TABLE ' . $this->referrerss_table);
@@ -194,7 +194,7 @@ class referrers_module
 		$sql = 'SELECT * FROM ' . $this->referrerss_table . ' ORDER BY ' . $sql_sort;
 		$result = $db->sql_query_limit($sql, $config['topics_per_page'], $start);
 
-		while ( $row = $db->sql_fetchrow($result) )
+		while ($row = $db->sql_fetchrow($result))
 		{
 			$template->assign_block_vars('row', array(
 				'REF_ID'		=> (int) $row['ref_id'],
@@ -207,12 +207,12 @@ class referrers_module
 
 				'U_WHOIS'		=> $this->u_action . '&amp;action=whois&amp;ref_ip=' . $row['ref_ip'],
 				'U_DELETE'		=> $this->u_action . '&amp;action=delete&amp;id=' . $row['ref_id'],
-			));	
+			));
 		}
 		$db->sql_freeresult($result);
 
 		// used for pagination
-		$sql = 'SELECT COUNT(ref_id) AS total_entries FROM ' . $this->referrerss_table . 
+		$sql = 'SELECT COUNT(ref_id) AS total_entries FROM ' . $this->referrerss_table .
 				' ORDER BY ' . $sql_sort;
 		$result = $db->sql_query($sql);
 		$count = (int) $db->sql_fetchfield('total_entries');

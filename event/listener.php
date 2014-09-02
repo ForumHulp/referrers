@@ -96,19 +96,19 @@ class listener implements EventSubscriberInterface
 		$ref_url = strtolower($this->user->referer);
 
 		// remove the sid, if the website runs phpbb too !
-		if ( strpos($ref_url, 'sid=') !== false )
+		if (strpos($ref_url, 'sid=') !== false)
 		{
 			$ref_url = preg_replace('/(\?)?(&amp;|&)?sid=[a-z0-9]+/', '', $ref_url);
 			$ref_url = preg_replace("/$this->php_ext(&amp;|&)+?/", "$this->php_ext?", $ref_url);
 		}
 
 		// get the host
-		$cur_host = $this->config['server_name'] . $this->config['script_path'];
+		$cur_host = $this->config['server_name'];
 
-		if ( !empty($ref_url) && (strpos($ref_url, $cur_host) === false) )
+		if (!empty($ref_url) && (strpos($ref_url, $cur_host) === false))
 		{
 			$ref_host = substr($ref_url, strpos($ref_url, '//') + 2);
-			if ( strpos($ref_host, '/') === false )
+			if (strpos($ref_host, '/') === false)
 			{
 				$ref_url .= '/';
 			} else
@@ -116,7 +116,7 @@ class listener implements EventSubscriberInterface
 				$ref_host = substr($ref_host, 0, strpos($ref_host, '/'));
 			}
 
-			if ( substr($ref_host, -1) == '.' )
+			if (substr($ref_host, -1) == '.')
 			{
 				$ref_host = substr($ref_host, 0, -1);
 			}
@@ -130,7 +130,7 @@ class listener implements EventSubscriberInterface
 			$now = time();
 
 			$fields = array('ref_ip' => $this->user->ip, 'ref_last' => $now);
-			if ( !$found )
+			if (!$found)
 			{
 				$fields += array(
 					'ref_host' => $ref_host,
