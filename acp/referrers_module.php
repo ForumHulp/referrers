@@ -18,11 +18,11 @@ class referrers_module
 		global $db, $config, $phpbb_root_path, $user, $template, $request, $phpbb_extension_manager, $phpbb_container;
 
 		$user->add_lang_ext('forumhulp/referrers', 'referrers');
-		
+
 		$this->referrerss_table	= $phpbb_container->getParameter('tables.referrers');
 		$this->page_title		= $user->lang['ACP_REFERRERS'];
 		$this->tpl_name			= 'acp_referrers';
-		
+
 		$action = $request->variable('action', '');
 		switch ($action)
 		{
@@ -81,7 +81,7 @@ class referrers_module
 				$this->tpl_name = 'acp_referrers';
 				$this->page_title = 'ACP_REF_MANAGE';
 				$this->ref_manage($id, $mode);
-				
+
 			break;
 		}
 	}
@@ -124,7 +124,6 @@ class referrers_module
 				'MESSAGE_TITLE' => $user->lang('IP_WHOIS_FOR', $domain),
 				'MESSAGE_TEXT' => nl2br($ipwhois),
 			));
-
 			return;
 		}
 
@@ -232,8 +231,6 @@ class referrers_module
 			'S_REFDEL'			=> $auth->acl_get('a_clearlogs'),
 		));
 	}
-
-
 
 	/**
 	* Check the version and return the available updates.

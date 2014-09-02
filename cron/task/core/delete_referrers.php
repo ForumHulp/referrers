@@ -12,10 +12,6 @@ namespace forumhulp\referrers\cron\task\core;
 /**
 * @ignore
 */
-if (!defined('IN_PHPBB'))
-{
-	exit;
-}
 
 class delete_referrers extends \phpbb\cron\task\base
 {
@@ -47,9 +43,9 @@ class delete_referrers extends \phpbb\cron\task\base
 	public function run()
 	{
 		global $phpbb_container;
-		
+
 		$expire_date = time() - ($this->config['delete_referrers_days'] * 86400);
-		
+
 		// get hosts for logs
 		$sql = 'SELECT DISTINCT ref_host FROM ' . $phpbb_container->getParameter('tables.referrers') . ' WHERE ref_last < ' . $expire_date;
 		$result = $this->db->sql_query($sql);
@@ -60,7 +56,7 @@ class delete_referrers extends \phpbb\cron\task\base
 			$host_list[] = $row['ref_host'];
 		}
 		$this->db->sql_freeresult($result);
-		
+
 		$sql = 'DELETE FROM ' . $phpbb_container->getParameter('tables.referrers') . ' WHERE ref_last < ' . $expire_date;
 		$this->db->sql_query($sql);
 		add_log('admin', 'LOG_REFERRER_REMOVED', implode(', ', $host_list), (int) $this->db->sql_affectedrows());

@@ -3,6 +3,8 @@ Referrer
 
 Referrer displays an overview of referrer logs in Maintenance module of ACP. This extension logs all referrers it finds and keep track of hits, first visit and last visit. A cron job can prune the referrers after a configurable time.
 
+[![Build Status](https://travis-ci.org/ForumHulp/referrers.svg?branch=master)](https://travis-ci.org/ForumHulp/referrers)
+
 ## Requirements
 * phpBB 3.1.0-dev or higher
 * PHP 5.3.3 or higher
@@ -10,7 +12,7 @@ Referrer displays an overview of referrer logs in Maintenance module of ACP. Thi
 ## Installation
 You can install this extension on the latest copy of the develop branch ([phpBB 3.1-dev](https://github.com/phpbb/phpbb3)) by doing the following:
 
-1. Copy the [entire contents of this repo](https://github.com/ForumHulp/referrers/archive/master.zip) to `FORUM_DIRECTORY/ext/forumhulp/referrers/`.
+1. Copy the [entire contents of this repo](https://github.com/ForumHulp/referrers/archive/master.zip) to `FORUM_DIRECTORY/ext/forumhulp/referrer/`.
 2. Navigate in the ACP to `Customise -> Extension Management -> Manage extensions`.
 3. Click Referrer => `Enable`.
 
