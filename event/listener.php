@@ -47,27 +47,30 @@ class listener implements EventSubscriberInterface
 			'core.user_setup'					=> 'get_ref',
 			'core.acp_board_config_edit_add'	=> 'load_config_on_setup',
 		);
-    }
-	
+	}
+
 	public function load_config_on_setup($event)
 	{
 		if ($event['mode'] == 'features')
 		{
 			$display_vars = $event['display_vars'];
 
-			$add_config_var['delete_referrers_days'] = 
+			$add_config_var['delete_referrers_days'] =
 				array(
 					'lang' 		=> 'DELETE_REFERRERS_DAYS',
 					'validate'	=> 'int',
 					'type'		=> 'number:0:99',
 					'explain'	=> true
 				);
-			if(!function_exists("insert_config_array")) include("compatibility.php");
+			if(!function_exists("insert_config_array"))
+			{
+				include("compatibility.php");
+			}
 			$display_vars['vars'] = phpbb_insert_config_array($display_vars['vars'], $add_config_var, array('after' =>'allow_quick_reply'));
 			$event['display_vars'] = array('title' => $display_vars['title'], 'vars' => $display_vars['vars']);
 		}
 	}
-	
+
 	/**
 	* @param object $event The event object
 	* @return null

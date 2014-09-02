@@ -29,11 +29,11 @@ class install_referrers extends \phpbb\db\migration\migration
 				// F1 driver table
 				$this->table_prefix . 'referrers'	=> array(
 					'COLUMNS'		=> array(
-						'ref_id' => array('UINT', NULL, 'auto_increment'),
+						'ref_id' => array('UINT', null, 'auto_increment'),
 						'ref_host' => array('TEXT', ''),
 						'ref_url' => array('TEXT', ''),
 						'ref_ip' => array('VCHAR:40', ''),
-						'ref_hits' => array('UINT', NULL),
+						'ref_hits' => array('UINT', null),
 						'ref_first' => array('TIMESTAMP', 0),
 						'ref_last' => array('TIMESTAMP', 0),
 					),
