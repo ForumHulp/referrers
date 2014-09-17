@@ -3,12 +3,13 @@
 	"type": "phpbb-extension",
 	"description": "Referrer displays an overview of referrer logs in Maintenance module of ACP. This extension logs all referrers it finds and keep track of hits, first visit and last visit. A cron job can prune the referrers after a configurable time.",
 	"homepage": "http://forumhulp.com",
-	"version": "3.1.0-rc3",
+	"version": "3.1.0.RC4",
 	"keywords": ["forumhulp", "phpbb", "extension", "referrers"],
 	"license": "GPL-2.0",
 	"authors": [
 		{
 			"name": "John Peskens",
+			"homepage": "http://forumhulp.com",
 			"email": "info@forumhulp.com",
 			"role": "Developer"
 		}
