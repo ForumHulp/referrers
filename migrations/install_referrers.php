@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\referrers\migration;
+namespace forumhulp\referrers\migrations;
 
 class install_referrers extends \phpbb\db\migration\migration
 {
