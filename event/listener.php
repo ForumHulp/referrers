@@ -129,7 +129,7 @@ class listener implements EventSubscriberInterface
 			if (!$found)
 			{
 				$fields += array(
-					'ref_host' => $ref_host,
+					'ref_host' => str_replace('www.', '', $ref_host),
 					'ref_url' => $ref_url,
 					'ref_hits' => 1,
 					'ref_first' => $now,

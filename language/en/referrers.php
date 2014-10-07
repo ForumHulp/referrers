@@ -21,7 +21,7 @@ $lang = array_merge($lang, array(
 	'ACP_REFERRERS'	=> 'Referrers log',
 
 	'ACP_REF_MANAGE'			=> 'Referrers',
-	'ACP_REF_MANAGE_EXPLAIN'	=> 'Display a list of websites and url\'s where visitors came from to your board.<br />You can sort on host, visits and first and last visit date.',
+	'ACP_REF_MANAGE_EXPLAIN'	=> 'Display a list of websites and url\'s where visitors came from to your board.<br />You can sort on host, visits and first and last visit date. A cron jobs will delete records where last visit is older then x days, adjustable in Board features.',
 
 	'REF_HOST'	=> 'Host',
 	'REF_URL'	=> 'Referrer',

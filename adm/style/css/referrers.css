@@ -17,16 +17,16 @@ h1 {position: relative;}
 
 /* Column widths are based on these cells */
 .row-host {
-  width: 8%;
+  width: 19%;
 }
 .row-link {
-  width: 32%;
+  width: 19%;
 }
 .row-ip {
   width: 10%;
 }
 .row-hits {
-  width: 8%;
+  width: 9%;
 }
 
 .row-first {
@@ -36,7 +36,7 @@ h1 {position: relative;}
   width: 14%;
 }
 .row-mark {
-  width: 4%;
+  width: 5%;
 }
 
 

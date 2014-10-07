@@ -100,7 +100,7 @@ class referrers_module
 		$mark		= $request->variable('mark', array(0));
 
 		// sort keys
-		$sort_key	= $request->variable('sk', 'l');
+		$sort_key	= $request->variable('sk', 'v');
 		$sort_dir	= $request->variable('sd', 'd');
 
 		// form name
@@ -190,7 +190,7 @@ class referrers_module
 
 		// define sort sql for use in displaying referrers
 		$sql_sort = $sort_by_sql[$sort_key] . ' ' . (($sort_dir == 'd') ? 'DESC' : 'ASC');
-
+		$dateformats = array_keys($user->lang['dateformats']);
 		$sql = 'SELECT * FROM ' . $this->referrerss_table . ' ORDER BY ' . $sql_sort;
 		$result = $db->sql_query_limit($sql, $config['topics_per_page'], $start);
 
@@ -202,8 +202,8 @@ class referrers_module
 				'REF_URL'		=> $row['ref_url'],
 				'REF_IP'		=> $row['ref_ip'],
 				'REF_HITS'		=> (int) $row['ref_hits'],
-				'REF_FIRST'		=> $user->format_date($row['ref_first']),
-				'REF_LAST'		=> $user->format_date($row['ref_last']),
+				'REF_FIRST'		=> $user->format_date($row['ref_first'], str_replace('M', 'n', $dateformats[1])),
+				'REF_LAST'		=> $user->format_date($row['ref_last'], str_replace('M', 'n', $dateformats[1])),
 
 				'U_WHOIS'		=> $this->u_action . '&amp;action=whois&amp;ref_ip=' . $row['ref_ip'],
 				'U_DELETE'		=> $this->u_action . '&amp;action=delete&amp;id=' . $row['ref_id'],
