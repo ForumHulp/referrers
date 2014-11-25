@@ -13,7 +13,7 @@ class install_referrers extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['referrers_version']) && version_compare($this->config['referrers_version'], '3.1.0.RC4', '>=');
+		return isset($this->config['referrers_version']) && version_compare($this->config['referrers_version'], '3.1.0', '>=');
 	}
 
 	static public function depends_on()
@@ -55,7 +55,7 @@ class install_referrers extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return array(
-			array('config.add', array('referrers_version', '3.1.0.RC4')),
+			array('config.add', array('referrers_version', '3.1.0')),
 			array('config.add', array('delete_referrers_days', 30)),
 			array('config.add', array('delete_referrers_gc', 86400)),
 			array('config.add', array('delete_referrers_last_gc', 0, 1)),

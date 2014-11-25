@@ -202,8 +202,8 @@ class referrers_module
 				'REF_URL'		=> $row['ref_url'],
 				'REF_IP'		=> $row['ref_ip'],
 				'REF_HITS'		=> (int) $row['ref_hits'],
-				'REF_FIRST'		=> $user->format_date($row['ref_first'], str_replace('M', 'n', $dateformats[1])),
-				'REF_LAST'		=> $user->format_date($row['ref_last'], str_replace('M', 'n', $dateformats[1])),
+				'REF_FIRST'		=> $user->format_date($row['ref_first'], str_replace(' M ', '-n-', $dateformats[1])),
+				'REF_LAST'		=> $user->format_date($row['ref_last'], str_replace(' M ', '-n-', $dateformats[1])),
 
 				'U_WHOIS'		=> $this->u_action . '&amp;action=whois&amp;ref_ip=' . $row['ref_ip'],
 				'U_DELETE'		=> $this->u_action . '&amp;action=delete&amp;id=' . $row['ref_id'],
@@ -253,7 +253,7 @@ class referrers_module
 
 		$version_check = $meta['extra']['version-check'];
 
-		$version_helper = new \phpbb\version_helper($cache, $config, $user);
+		$version_helper = new \phpbb\version_helper($cache, $config, new \phpbb\file_downloader(), $user);
 		$version_helper->set_current_version($meta['version']);
 		$version_helper->set_file_location($version_check['host'], $version_check['directory'], $version_check['filename']);
 		$version_helper->force_stability($config['extension_force_unstable'] ? 'unstable' : null);
