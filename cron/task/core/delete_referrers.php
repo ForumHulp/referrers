@@ -18,22 +18,23 @@ class delete_referrers extends \phpbb\cron\task\base
 	protected $phpbb_root_path;
 	protected $php_ext;
 	protected $config;
+	protected $user;
+	protected $log;
 	protected $db;
+	protected $referrers_table;
 
 	/**
 	* Constructor.
-	*
-	* @param string $phpbb_root_path The root path
-	* @param string $php_ext The PHP extension
-	* @param phpbb_config $config The config
-	* @param phpbb_db_driver $db The db connection
 	*/
-	public function __construct($phpbb_root_path, $php_ext, \phpbb\config\config $config, \phpbb\db\driver\driver_interface $db)
+	public function __construct($phpbb_root_path, $php_ext, \phpbb\config\config $config, \phpbb\user $user, \phpbb\log\log $log, \phpbb\db\driver\driver_interface $db, $referrers_table)
 	{
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
 		$this->config = $config;
+		$this->user = $user;
+		$this->log = $log;
 		$this->db = $db;
+		$this->referrers_table = $referrers_table;
 	}
 	/**
 	* Runs this cron task.
@@ -42,12 +43,10 @@ class delete_referrers extends \phpbb\cron\task\base
 	*/
 	public function run()
 	{
-		global $phpbb_container;
-
 		$expire_date = time() - ($this->config['delete_referrers_days'] * 86400);
 
 		// get hosts for logs
-		$sql = 'SELECT DISTINCT ref_host FROM ' . $phpbb_container->getParameter('tables.referrers') . ' WHERE ref_last < ' . $expire_date;
+		$sql = 'SELECT DISTINCT ref_host FROM ' . $this->referrers_table . ' WHERE ref_last < ' . $expire_date;
 		$result = $this->db->sql_query($sql);
 
 		$host_list = array();
@@ -57,9 +56,9 @@ class delete_referrers extends \phpbb\cron\task\base
 		}
 		$this->db->sql_freeresult($result);
 
-		$sql = 'DELETE FROM ' . $phpbb_container->getParameter('tables.referrers') . ' WHERE ref_last < ' . $expire_date;
+		$sql = 'DELETE FROM ' . $this->referrers_table . ' WHERE ref_last < ' . $expire_date;
 		$this->db->sql_query($sql);
-		add_log('admin', 'LOG_REFERRER_REMOVED', implode(', ', $host_list), (int) $this->db->sql_affectedrows());
+		$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_REFERRER_REMOVED', false, array(implode(', ', $host_list), (int) $this->db->sql_affectedrows()));
 
 		$this->config->set('delete_referrers_last_gc', time());
 	}

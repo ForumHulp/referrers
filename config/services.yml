@@ -13,14 +13,18 @@ services:
             - %core.php_ext%
         tags:
             - { name: event.listener }
-			
+
     forumhulp.referrers.cron.task.core.delete_referrers:
         class: forumhulp\referrers\cron\task\core\delete_referrers
         arguments:
             - %core.root_path%
             - %core.php_ext%
             - @config
+            - @user
+            - @log
             - @dbal.conn
+            - %tables.referrers%
+
         calls:
             - [set_name, [cron.task.core.delete_referrers]]
         tags:

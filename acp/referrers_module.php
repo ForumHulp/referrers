@@ -19,7 +19,7 @@ class referrers_module
 
 		$user->add_lang_ext('forumhulp/referrers', 'referrers');
 
-		$this->referrerss_table	= $phpbb_container->getParameter('tables.referrers');
+		$this->referrers_table	= $phpbb_container->getParameter('tables.referrers');
 		$this->page_title		= $user->lang['ACP_REFERRERS'];
 		$this->tpl_name			= 'acp_referrers';
 
@@ -144,7 +144,7 @@ class referrers_module
 					unset($sql_in, $marked);
 
 					// get hosts for logs
-					$sql = 'SELECT ref_host FROM ' . $this->referrerss_table . $sql_where;
+					$sql = 'SELECT ref_host FROM ' . $this->referrers_table . $sql_where;
 					$result = $db->sql_query($sql);
 
 					$host_list = array();
@@ -157,15 +157,15 @@ class referrers_module
 
 				if ($sql_where)
 				{
-					$sql = 'DELETE FROM ' . $this->referrerss_table . $sql_where;
+					$sql = 'DELETE FROM ' . $this->referrers_table . $sql_where;
 					$db->sql_query($sql);
 
-					add_log('admin', 'LOG_REFERRER_REMOVED', implode(', ', array_unique($host_list)), (int) $this->db->sql_affectedrows());
+					add_log('admin', 'LOG_REFERRER_REMOVED', implode(', ', array_unique($host_list)), (int) $db->sql_affectedrows());
 				}
 				else if ($deleteall)
 				{
 					// clear table
-					$db->sql_query('TRUNCATE TABLE ' . $this->referrerss_table);
+					$db->sql_query('TRUNCATE TABLE ' . $this->referrers_table);
 					add_log('admin', 'LOG_REFERRER_REMOVED_ALL');
 				}
 			} else
@@ -191,7 +191,7 @@ class referrers_module
 		// define sort sql for use in displaying referrers
 		$sql_sort = $sort_by_sql[$sort_key] . ' ' . (($sort_dir == 'd') ? 'DESC' : 'ASC');
 		$dateformats = array_keys($user->lang['dateformats']);
-		$sql = 'SELECT * FROM ' . $this->referrerss_table . ' ORDER BY ' . $sql_sort;
+		$sql = 'SELECT * FROM ' . $this->referrers_table . ' ORDER BY ' . $sql_sort;
 		$result = $db->sql_query_limit($sql, $config['topics_per_page'], $start);
 
 		while ($row = $db->sql_fetchrow($result))
@@ -212,7 +212,7 @@ class referrers_module
 		$db->sql_freeresult($result);
 
 		// used for pagination
-		$sql = 'SELECT COUNT(ref_id) AS total_entries FROM ' . $this->referrerss_table .
+		$sql = 'SELECT COUNT(ref_id) AS total_entries FROM ' . $this->referrers_table .
 				' ORDER BY ' . $sql_sort;
 		$result = $db->sql_query($sql);
 		$count = (int) $db->sql_fetchfield('total_entries');

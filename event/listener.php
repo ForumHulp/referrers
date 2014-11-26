@@ -23,21 +23,19 @@ class listener implements EventSubscriberInterface
 	protected $helper;
 	protected $user;
 	protected $db;
-	protected $referrerss_table;
+	protected $referrers_table;
 	protected $php_ext;
 
 	/**
 	* Constructor
-	*
-	* @param \phpbb\controller\helper    $helper        Controller helper object
 	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\controller\helper $helper, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, $referrerss_table, $php_ext)
+	public function __construct(\phpbb\config\config $config, \phpbb\controller\helper $helper, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, $referrers_table, $php_ext)
 	{
 		$this->config = $config;
 		$this->helper = $helper;
 		$this->user = $user;
 		$this->db = $db;
-		$this->referrerss_table = $referrerss_table;
+		$this->referrers_table = $referrers_table;
 		$this->php_ext = $php_ext;
 	}
 
@@ -117,7 +115,7 @@ class listener implements EventSubscriberInterface
 				$ref_host = substr($ref_host, 0, -1);
 			}
 
-			$sql = 'SELECT ref_url FROM ' . $this->referrerss_table . ' WHERE ref_url = \'' . $this->db->sql_escape($ref_url) . '\'';
+			$sql = 'SELECT ref_url FROM ' . $this->referrers_table . ' WHERE ref_url = \'' . $this->db->sql_escape($ref_url) . '\'';
 			$result = $this->db->sql_query_limit($sql, 1);
 			$found = ($row = $this->db->sql_fetchrow($result));
 			$this->db->sql_freeresult($result);
@@ -134,10 +132,10 @@ class listener implements EventSubscriberInterface
 					'ref_hits' => 1,
 					'ref_first' => $now,
 				);
-				$sql = 'INSERT INTO ' . $this->referrerss_table . ' ' . $this->db->sql_build_array('INSERT', $fields);
+				$sql = 'INSERT INTO ' . $this->referrers_table . ' ' . $this->db->sql_build_array('INSERT', $fields);
 			} else
 			{
-				$sql = 'UPDATE ' . $this->referrerss_table . ' SET ref_hits = ref_hits + 1, ' . $this->db->sql_build_array('UPDATE', $fields) . '
+				$sql = 'UPDATE ' . $this->referrers_table . ' SET ref_hits = ref_hits + 1, ' . $this->db->sql_build_array('UPDATE', $fields) . '
 						WHERE ref_url = \'' . $this->db->sql_escape($ref_url) . '\'';
 			}
 			$this->db->sql_query($sql);
