@@ -37,8 +37,18 @@ h1 {position: relative;}
 }
 .row-mark {
   width: 5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+.ellipsis {
+	width:100%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	font-size:100%;
+}
 
 .fa-arrow-up, .fa-arrow-down {float:right; color:#fff; padding: 0 2px;}
 

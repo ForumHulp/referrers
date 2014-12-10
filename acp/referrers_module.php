@@ -165,7 +165,17 @@ class referrers_module
 				else if ($deleteall)
 				{
 					// clear table
-					$db->sql_query('TRUNCATE TABLE ' . $this->referrers_table);
+					switch ($db->get_sql_layer())
+					{
+						case 'sqlite':
+						case 'sqlite3':
+							$db->sql_query('DELETE FROM ' . $this->referrers_table);
+						break;
+				
+						default:
+							$db->sql_query('TRUNCATE TABLE ' . $this->referrers_table);
+						break;
+					}
 					add_log('admin', 'LOG_REFERRER_REMOVED_ALL');
 				}
 			} else
@@ -212,8 +222,7 @@ class referrers_module
 		$db->sql_freeresult($result);
 
 		// used for pagination
-		$sql = 'SELECT COUNT(ref_id) AS total_entries FROM ' . $this->referrers_table .
-				' ORDER BY ' . $sql_sort;
+		$sql = 'SELECT COUNT(ref_id) AS total_entries FROM ' . $this->referrers_table;
 		$result = $db->sql_query($sql);
 		$count = (int) $db->sql_fetchfield('total_entries');
 		$db->sql_freeresult($result);

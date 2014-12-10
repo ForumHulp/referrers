@@ -51,7 +51,7 @@
 <!-- BEGIN row -->
 	<!-- IF row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
 	<td title="{row.REF_HOST}">{row.REF_HOST}</td>
-	<td><a href="{row.REF_URL}" onclick="window.open(this.href); return false;" title="{row.REF_URL}"><div style="width:100%; overflow:hidden; text-overflow:ellipsis;white-space:nowrap; font-size:100%;">{row.REF_URL}</div></a></td>
+	<td><a href="{row.REF_URL}" onclick="window.open(this.href); return false;" title="{row.REF_URL}"><div class="ellipsis">{row.REF_URL}</div></a></td>
 	<td style="text-align:center;"><a href="{row.U_WHOIS}" onclick="popup(this.href, 700, 500, '_whois'); return false;" title="{row.REF_IP}">{row.REF_IP}</a></td>
 	<td style="text-align:center;">{row.REF_HITS}</td>
 	<td style="text-align:center;">{row.REF_FIRST}</td>
