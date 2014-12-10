@@ -171,7 +171,7 @@ class referrers_module
 						case 'sqlite3':
 							$db->sql_query('DELETE FROM ' . $this->referrers_table);
 						break;
-				
+
 						default:
 							$db->sql_query('TRUNCATE TABLE ' . $this->referrers_table);
 						break;
