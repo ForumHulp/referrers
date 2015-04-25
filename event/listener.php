@@ -87,7 +87,7 @@ class listener implements EventSubscriberInterface
 	{
 		$this->load_language_on_setup($event);
 		// get the referer
-		$ref_url = strtolower($this->user->referer);
+		$ref_url = $this->user->referer;
 
 		// remove the sid, if the website runs phpbb too !
 		if (strpos($ref_url, 'sid=') !== false)
