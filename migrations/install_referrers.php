@@ -11,11 +11,6 @@ namespace forumhulp\referrers\migrations;
 
 class install_referrers extends \phpbb\db\migration\migration
 {
-	public function effectively_installed()
-	{
-		return isset($this->config['referrers_version']) && version_compare($this->config['referrers_version'], '3.1.0', '>=');
-	}
-
 	static public function depends_on()
 	{
 		return array('\phpbb\db\migration\data\v310\dev');
@@ -24,9 +19,8 @@ class install_referrers extends \phpbb\db\migration\migration
 	public function update_schema()
 	{
 		return array(
-			// We have to create our own f1 webtip tables
+			// We have to create our own tables
 			'add_tables'	=> array(
-				// F1 driver table
 				$this->table_prefix . 'referrers'	=> array(
 					'COLUMNS'		=> array(
 						'ref_id' => array('UINT', null, 'auto_increment'),
@@ -55,10 +49,9 @@ class install_referrers extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return array(
-			array('config.add', array('referrers_version', '3.1.0')),
 			array('config.add', array('delete_referrers_days', 30)),
-			array('config.add', array('delete_referrers_gc', 86400)),
-			array('config.add', array('delete_referrers_last_gc', 0, 1)),
+			array('config.add', array('referrers_gc', 86400)),
+			array('config.add', array('referrers_last_gc', 0, 1)),
 			array('module.add', array(
 				'acp', 'ACP_FORUM_LOGS', array(
 					'module_basename'	=> '\forumhulp\referrers\acp\referrers_module',

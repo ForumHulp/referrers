@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Inactive Users
+* @package Referrers
 * @copyright (c) 2014 ForumHulp.com
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -60,7 +60,7 @@ class delete_referrers extends \phpbb\cron\task\base
 		$this->db->sql_query($sql);
 		$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_REFERRER_REMOVED', false, array(implode(', ', $host_list), (int) $this->db->sql_affectedrows()));
 
-		$this->config->set('delete_referrers_last_gc', time());
+		$this->config->set('referrers_last_gc', time());
 	}
 
 	/**
@@ -81,6 +81,6 @@ class delete_referrers extends \phpbb\cron\task\base
 	*/
 	public function should_run()
 	{
-		return $this->config['delete_referrers_last_gc'] < time() - $this->config['delete_referrers_gc'];
+		return $this->config['referrers_last_gc'] < time() - $this->config['referrers_gc'];
 	}
 }
