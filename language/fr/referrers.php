@@ -36,5 +36,7 @@ $lang = array_merge($lang, array(
 	'LOG_REFERRER_REMOVED_ALL'	=> '<strong>Référents purgés</strong>',
 
 	'DELETE_REFERRERS_DAYS'			=> 'Référents',
-	'DELETE_REFERRERS_DAYS_EXPLAIN'	=> 'Nombre de jours après lequel la tache CRON supprimera les référents. 0 désactivera cette tache CRON.'
+	'DELETE_REFERRERS_DAYS_EXPLAIN'	=> 'Nombre de jours après lequel la tache CRON supprimera les référents. 0 désactivera cette tache CRON.',
+	'FH_HELPER_NOTICE'		=> 'Forumhulp helper application does not exist!<br />Download <a href="https://github.com/ForumHulp/helper" target="_blank">forumhulp/helper</a> and copy the helper folder to your forumhulp extension folder.',
+	'REFERRER_NOTICE'		=> '<div class="phpinfo"><p class="entry">This extension resides in %1$s » %2$s » %3$s.<br>Config settings are in %4$s » %5$s » %6$s.</p></div>',
 ));

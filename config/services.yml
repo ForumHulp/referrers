@@ -14,7 +14,7 @@ services:
         tags:
             - { name: event.listener }
 
-    forumhulp.referrers:
+    forumhulp.cron.referrers:
         class: forumhulp\referrers\cron\task\core\delete_referrers
         arguments:
             - %core.root_path%
@@ -26,6 +26,6 @@ services:
             - %tables.referrers%
 
         calls:
-            - [set_name, [forumhulp.referrers]]
+            - [set_name, [forumhulp.cron.referrers]]
         tags:
             - { name: cron.task }
