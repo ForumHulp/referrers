@@ -99,7 +99,7 @@ class listener implements EventSubscriberInterface
 		// get the host
 		$cur_host = $this->config['server_name'];
 
-		if (!empty($ref_url) && (strpos($ref_url, $cur_host) !== false))
+		if (!empty($ref_url) && (strpos($ref_url, $cur_host) === false))
 		{
 			$ref_host = substr($ref_url, strpos($ref_url, '//') + 2);
 			if (strpos($ref_host, '/') === false)
