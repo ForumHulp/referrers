@@ -8,7 +8,6 @@
 */
 
 namespace forumhulp\referrers\migrations\v31x;
-use ext\forumhulp\helper\helper;
 
 /**
  * Migration stage 1: Initial schema
