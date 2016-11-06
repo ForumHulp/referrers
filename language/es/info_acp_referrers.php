@@ -19,16 +19,16 @@ if (empty($lang) || !is_array($lang))
 
 // Description of extension
 $lang = array_merge($lang, array(
-	'DESCRIPTION_PAGE'		=> 'Description',
-	'DESCRIPTION_NOTICE'	=> 'Extension note',
+	'DESCRIPTION_PAGE'		=> 'Descripción',
+	'DESCRIPTION_NOTICE'	=> 'Nota de la extensión',
 	'ext_details' => array(
 		'details' => array(
-			'DESCRIPTION_1'		=> 'Sortable',
-			'DESCRIPTION_2'		=> 'Whois function',
-			'DESCRIPTION_3'		=> 'Cron cleans table',
+			'DESCRIPTION_1'		=> 'Clasificable',
+			'DESCRIPTION_2'		=> 'Función Whois',
+			'DESCRIPTION_3'		=> 'Cron para limpiar tabla',
 		),
 		'note' => array(
-			'NOTICE_1'			=> 'phpBB 3.2 ready'
+			'NOTICE_1'			=> 'Preparado para phpBB 3.2'
 		)
 	)
 ));
