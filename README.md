@@ -38,6 +38,8 @@ Navigate in the ACP to `Customise -> Extension Management -> Manage extensions` 
 
 To permanently uninstall, click `Delete Data` and then you can safely delete the `/ext/forumhulp/referrers/` folder.
 
+We feel sorry as our answers on phpbb sites are removed, so use github or our forum for answers.
+
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
