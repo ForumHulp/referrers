@@ -16,8 +16,6 @@ You can install this extension on the latest copy of the develop branch ([phpBB 
 2. Navigate in the ACP to `Customise -> Extension Management -> Manage extensions`.
 3. Click Referrer => `Enable`.
 
-Note: This extension is in development. Installation is only recommended for testing purposes and is not supported on live boards. This extension will be officially released following phpBB 3.1.0. Extension depends on two core changes.
-
 ## Usage
 ### Referrer page
 To check the referrers navigate in the ACP to `Maintenance -> Referrer Log`.
